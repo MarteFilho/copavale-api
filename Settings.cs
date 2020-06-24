@@ -2,6 +2,6 @@ namespace CopaVale
 {
     public static class Settings
     {
-        public static string Secret = "b7c3886d9afcdc909f8318079e8ec8b7";
+        public static string Secret = "39e6d7b4482cbd4e8664ad37d1f6556d";
     }
 }

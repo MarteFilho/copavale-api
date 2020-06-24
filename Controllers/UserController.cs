@@ -77,12 +77,12 @@ namespace CopaVale.Controllers
                 if (user == null)
                     return NotFound(new { Erro = "Usuário ou senha inválidos!" });
 
-                var Token = TokenService.GenerateToken(user);
+                var token = TokenService.GenerateToken(user);
 
                 return new
                 {
                     user = user,
-                    token = Token
+                    token = token
 
                 };
 
