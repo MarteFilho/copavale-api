@@ -1,5 +1,6 @@
 ﻿using CopaVale.Context;
 using CopaVale.Models;
+using CopaVale.Service;
 using CopaVale.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -68,11 +69,23 @@ namespace CopaVale.Controllers
         {
             try
             {
-                var user = await _context.User.AsNoTracking().Where(x => x.Nickname == model.Nickname && x.Password == model.Password).FirstOrDefaultAsync();
+                var user = await _context.User
+                    .AsNoTracking()
+                    .Where(x => x.Nickname == model.Nickname && x.Password == model.Password)
+                    .FirstOrDefaultAsync();
 
                 if (user == null)
                     return NotFound(new { Erro = "Usuário ou senha inválidos!" });
-                return Ok(user);
+
+                var Token = TokenService.GenerateToken(user);
+
+                return new
+                {
+                    user = user,
+                    token = Token
+
+                };
+
             }
             catch (Exception)
             {
