@@ -78,6 +78,7 @@ namespace CopaVale.Controllers
                     return NotFound(new { Erro = "Usuário ou senha inválidos!" });
 
                 var token = TokenService.GenerateToken(user);
+                Console.WriteLine(token);
 
                 return new
                 {
