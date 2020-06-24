@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CopaVale.Models
 {
@@ -36,7 +32,7 @@ namespace CopaVale.Models
         [MaxLength(50)]
         public string FaceitURL { get; set; }
 
-        [MinLength(10)]
+        [MinLength(5)]
         [MaxLength(10)]
         public string Role { get; set; }
 
