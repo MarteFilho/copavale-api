@@ -24,6 +24,11 @@ namespace CopaVale.Models
         [Required]
         [MinLength(5)]
         [MaxLength(50)]
+        public string Phone { get; set; }
+
+        [Required]
+        [MinLength(5)]
+        [MaxLength(50)]
         public string Password { get; set; }
 
 
@@ -35,6 +40,12 @@ namespace CopaVale.Models
         [MinLength(5)]
         [MaxLength(10)]
         public string Role { get; set; }
+
+        [MinLength(5)]
+        [MaxLength(10)]
+        [Required]
+        public string Function { get; set; }
+
 
     }
 }
