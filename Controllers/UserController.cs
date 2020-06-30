@@ -58,7 +58,7 @@ namespace CopaVale.Controllers
 
                 return BadRequest(new { Erro = "Não foi possível se conectar com o banco de dados!" });
             }
-
+            model.Role = "usuario";
             return Ok(model);
         }
 
