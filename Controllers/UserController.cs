@@ -37,9 +37,10 @@ namespace CopaVale.Controllers
             
         }
 
+        //Criação do usuário
         [HttpPost]
         [Route("v1/user")]
-        public async Task<ActionResult<User>> Post([FromBody]User model)
+        public async Task<ActionResult<dynamic>> Post([FromBody]User model)
         {
 
             if (!ModelState.IsValid)
@@ -59,10 +60,14 @@ namespace CopaVale.Controllers
 
                 return BadRequest(new { Erro = "Não foi possível se conectar com o banco de dados!" });
             }
-            return Ok(model);
+            return new
+            {
+                user = User,
+                mesangem = "Usuário cadastrado com sucesso!"
+            };
         }
 
-
+        //Autenticação
         [HttpPost]
         [Route("v1/login")]
         public async Task<ActionResult<dynamic>> Login([FromBody] UserLoginModel model)
@@ -78,7 +83,6 @@ namespace CopaVale.Controllers
                     return NotFound(new { Erro = "Usuário ou senha inválidos!" });
 
                 var token = TokenService.GenerateToken(user);
-                Console.WriteLine(token);
 
                 return new
                 {
