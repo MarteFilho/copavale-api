@@ -49,6 +49,7 @@ namespace CopaVale.Controllers
 
             try
             {
+                model.Role = "usuario";
                 _context.User.Add(model);
                 await _context.SaveChangesAsync();
                 
@@ -58,7 +59,6 @@ namespace CopaVale.Controllers
 
                 return BadRequest(new { Erro = "Não foi possível se conectar com o banco de dados!" });
             }
-            model.Role = "usuario";
             return Ok(model);
         }
 
