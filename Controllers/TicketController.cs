@@ -80,7 +80,9 @@ namespace CopaVale.Controllers
 
             try
             {
-
+                model.DateOpen = data;
+                model.Awnser = "";
+                model.Status = "Em Andamento";
                 _context.Ticket.Add(model);
                 await _context.SaveChangesAsync();
 
