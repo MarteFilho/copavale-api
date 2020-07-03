@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CopaVale.Models
 {
@@ -45,6 +46,8 @@ namespace CopaVale.Models
         [MaxLength(20)]
         [Required]
         public string Function { get; set; }
+
+        public List<Ticket> Tickets { get; set; }
 
 
     }

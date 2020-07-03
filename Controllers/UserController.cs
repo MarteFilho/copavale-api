@@ -62,7 +62,7 @@ namespace CopaVale.Controllers
             }
             return new
             {
-                user = User,
+                user = model,
                 mesangem = "Usuário cadastrado com sucesso!"
             };
         }
