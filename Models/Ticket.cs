@@ -4,9 +4,11 @@ namespace CopaVale.Models
 {
     public class Ticket
     {
-        public int Id { get; set; }
-        [Required]
+        public int TicketId { get; set; }
+
         public User User { get; set; }
+
+        public int UserId { get; set; }
 
         [Required]
         [MinLength(3)]

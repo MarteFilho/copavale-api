@@ -50,7 +50,7 @@ namespace CopaVale.Controllers
         {
             try
             {
-                var tickets =  await _context.Ticket.AsNoTracking().Where(x => x.User.Id == Id).FirstOrDefaultAsync();
+                var tickets =  await _context.Ticket.AsNoTracking().Where(x => x.User.UserId == Id).FirstOrDefaultAsync();
 
                 if (tickets == null)
                 {

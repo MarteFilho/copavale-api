@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CopaVale.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [MinLength(3)]
@@ -47,7 +48,7 @@ namespace CopaVale.Models
         [Required]
         public string Function { get; set; }
 
-        public List<Ticket> Tickets { get; set; }
+        public List<Ticket> Ticket { get; set; }
 
 
     }

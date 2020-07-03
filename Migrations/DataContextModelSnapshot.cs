@@ -20,13 +20,12 @@ namespace CopaVale.Migrations
 
             modelBuilder.Entity("CopaVale.Models.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TicketId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Awnser")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -46,7 +45,7 @@ namespace CopaVale.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("TicketId");
 
                     b.HasIndex("UserId");
 
@@ -55,7 +54,7 @@ namespace CopaVale.Migrations
 
             modelBuilder.Entity("CopaVale.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -99,7 +98,7 @@ namespace CopaVale.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("User");
                 });
@@ -107,7 +106,7 @@ namespace CopaVale.Migrations
             modelBuilder.Entity("CopaVale.Models.Ticket", b =>
                 {
                     b.HasOne("CopaVale.Models.User", "User")
-                        .WithMany("Tickets")
+                        .WithMany("Ticket")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
