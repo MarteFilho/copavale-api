@@ -50,6 +50,5 @@ namespace CopaVale.Models
 
         public List<Ticket> Ticket { get; set; }
 
-
     }
 }

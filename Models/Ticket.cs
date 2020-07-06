@@ -15,6 +15,11 @@ namespace CopaVale.Models
         [MaxLength(100)]
         public string Problem { get; set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(100)]
+        public string Reason { get; set; }
+
         [MinLength(3)]
         [MaxLength(100)]
         public string DateOpen { get; set; }

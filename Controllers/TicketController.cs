@@ -28,7 +28,7 @@ namespace CopaVale.Controllers
 
             try
             {
-                var tickets = await _context.Ticket.AsNoTracking().ToListAsync();
+                var tickets = await _context.Ticket.Include(x => x.User).AsNoTracking().ToListAsync();
                 if (tickets == null)
                 {
                     return NotFound(new { erro = "Nenhum ticket encontrado!" });
@@ -86,11 +86,16 @@ namespace CopaVale.Controllers
                 _context.Ticket.Add(model);
                 await _context.SaveChangesAsync();
 
+                Service.EmailService.SendMail();
+
                 return new
                 {
                     ticket = model,
                     mesangem = "Ticket criado com sucesso!"
                 };
+
+                
+
             }
             catch (Exception)
             {

@@ -25,6 +25,9 @@ namespace CopaVale
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 

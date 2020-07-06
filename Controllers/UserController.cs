@@ -26,7 +26,7 @@ namespace CopaVale.Controllers
         public async Task<ActionResult<List<User>>> Get()
         {
            
-                var users = await _context.User.AsNoTracking().ToListAsync();
+                var users = await _context.User.Include(x => x.Ticket).AsNoTracking().ToListAsync();
                 if (users == null)
                 {
                     return NotFound(new {erro = "Nenhum usuário encontrado!" });
