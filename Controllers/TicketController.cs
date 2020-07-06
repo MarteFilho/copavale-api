@@ -86,8 +86,6 @@ namespace CopaVale.Controllers
                 _context.Ticket.Add(model);
                 await _context.SaveChangesAsync();
 
-                Service.EmailService.SendMail();
-
                 return new
                 {
                     ticket = model,
