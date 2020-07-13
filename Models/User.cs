@@ -33,19 +33,12 @@ namespace CopaVale.Models
         [MaxLength(30)]
         public string Password { get; set; }
 
-
-        [Required]
-        [MinLength(10)]
-        [MaxLength(50)]
         public string FaceitURL { get; set; }
 
         [MinLength(5)]
         [MaxLength(10)]
         public string Role { get; set; }
 
-        [MinLength(5)]
-        [MaxLength(20)]
-        [Required]
         public string Function { get; set; }
 
         public List<Ticket> Ticket { get; set; }

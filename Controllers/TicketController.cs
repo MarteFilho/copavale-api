@@ -1,5 +1,6 @@
 ﻿using CopaVale.Context;
 using CopaVale.Models;
+using CopaVale.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,7 @@ namespace CopaVale.Controllers
     {
 
         private readonly DataContext _context;
+        private object color;
 
         public TicketController(DataContext context)
         {
@@ -72,7 +74,7 @@ namespace CopaVale.Controllers
         public async Task<ActionResult<dynamic>> Post([FromBody]Ticket model)
         {
 
-            var data = DateTime.UtcNow.Date.ToString();
+            var data = DateTime.UtcNow.ToString();
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { Erro = "Por favor verifique os dados digitados!" });
@@ -86,10 +88,31 @@ namespace CopaVale.Controllers
                 _context.Ticket.Add(model);
                 await _context.SaveChangesAsync();
 
+
+                EmailService sendEmail = new EmailService();
+                string body = @"<style>
+                            </style>
+                            <h1>Ticket Criado com sucesso!</h1></br>
+                            <h2>Status: " + model.Status + "</h2>";
+
+                var userEmail = _context.User.AsNoTracking().Where(x => x.UserId == model.UserId).FirstOrDefault();
+
+
+
+                var resultado = sendEmail.sendMail(userEmail.Email, "Copa Vale - Ticket ", body);
+
+                string bodyAdmin = 
+                            $@"<style>
+                            </style>
+                            <h1>Ticket Criado - Usuário - {userEmail.Nickname}</h1></br> <h2>Problema: " + model.Problem + "</h2><h2>Motivo: " + model.Reason + "</h2><h2>Status: " + model.Status + "</h2>";
+
+                //sendEmail.sendMail(userEmail.Email, "Copa Vale - Ticket ", bodyAdmin);
+
                 return new
                 {
                     ticket = model,
-                    mesangem = "Ticket criado com sucesso!"
+                    mesangem = "Ticket criado com sucesso!",
+                    resultado = resultado,
                 };
 
                 
