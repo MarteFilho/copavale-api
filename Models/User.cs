@@ -35,8 +35,6 @@ namespace CopaVale.Models
 
         public string FaceitURL { get; set; }
 
-        [MinLength(5)]
-        [MaxLength(10)]
         public string Role { get; set; }
 
         public string Function { get; set; }
