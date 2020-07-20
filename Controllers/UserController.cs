@@ -45,7 +45,7 @@ namespace CopaVale.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(model);
+                return BadRequest(new { Erro = "Por favor verifique os dados digitados!" });
             }
 
             try

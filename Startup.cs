@@ -68,9 +68,7 @@ namespace CopaVale
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CopaVale API V1");
-            }
-
-                );
+            });
 
             app.UseRouting();
             app.UseCors(x =>

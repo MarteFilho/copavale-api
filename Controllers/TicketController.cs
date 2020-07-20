@@ -15,8 +15,6 @@ namespace CopaVale.Controllers
     {
 
         private readonly DataContext _context;
-        private object color;
-
         public TicketController(DataContext context)
         {
             _context = context;

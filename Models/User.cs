@@ -40,6 +40,7 @@ namespace CopaVale.Models
         public string Function { get; set; }
 
         public List<Ticket> Ticket { get; set; }
+        public string TeamName { get; set; }
 
     }
 }
