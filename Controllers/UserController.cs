@@ -87,8 +87,8 @@ namespace CopaVale.Controllers
                 return new
                 {
                     user = user,
-                    token = token
-
+                    token = token,
+                    mesangem = "Autenticado com sucesso!"
                 };
 
             }

@@ -102,9 +102,9 @@ namespace CopaVale.Controllers
                 string bodyAdmin = 
                             $@"<style>
                             </style>
-                            <h1>Ticket Criado - Usuário - {userEmail.Nickname}</h1></br> <h2>Problema: " + model.Problem + "</h2><h2>Motivo: " + model.Reason + "</h2><h2>Status: " + model.Status + "</h2>";
+                            <h1>Ticket Criado - Usuário - {userEmail.Nickname}</h1></br> <h2>Problema: " + model.Problem + "</h2><h2>Motivo: " + model.Reason + "</h2><h2>Status: " + model.Status + "</h2>" + $"<h2>Time do usuário: {userEmail.TeamName}";
 
-                //sendEmail.sendMail(userEmail.Email, "Copa Vale - Ticket ", bodyAdmin);
+                sendEmail.sendMail(userEmail.Email, "Copa Vale - Ticket ", bodyAdmin);
 
                 return new
                 {
