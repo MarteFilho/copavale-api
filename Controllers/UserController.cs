@@ -31,7 +31,6 @@ namespace CopaVale.Controllers
                 {
                     return NotFound(new {erro = "Nenhum usuário encontrado!" });
                 }
-
                 return Ok(users);
             
             
@@ -51,6 +50,7 @@ namespace CopaVale.Controllers
             try
             {
                 model.Role = "usuario";
+                model.Password = PasswordService.Encrypt(model.Password);
                 _context.User.Add(model);
                 await _context.SaveChangesAsync();
                 
@@ -76,29 +76,40 @@ namespace CopaVale.Controllers
             {
                 var user = await _context.User
                     .AsNoTracking()
-                    .Where(x => x.Nickname == model.Nickname && x.Password == model.Password)
+                    .Where(x => x.Nickname == model.Nickname)
                     .FirstOrDefaultAsync();
 
                 if (user == null)
-                    return NotFound(new { Erro = "Usuário ou senha inválidos!" });
+                    return NotFound(new { Erro = "Usuário não encontrado!" });
 
-                var token = TokenService.GenerateToken(user);
-
-                return new
+                else
                 {
-                    user = user,
-                    token = token,
-                    mesangem = "Autenticado com sucesso!"
-                };
+                    if (PasswordService.Compare(model.Password, user.Password))
+                    {
+                        var token = TokenService.GenerateToken(user);
+                        user.Password = "";
+
+                        return new
+                        {
+                            user = user,
+                            token = token,
+                            mesangem = "Autenticado com sucesso!"
+                        };
+                    }
+
+                    else
+                    {
+                        return NotFound(new { Erro = "Senha inválida!" });
+                    }
+                }
+
+                
 
             }
             catch (Exception)
             {
-                return BadRequest(new { Erro = "Não foi possível se conectar com o banco de dados para a criação do usuário!" });
+                return BadRequest(new { Erro = "Não foi possível realizar o login" });
             }
-
-
-
         }
 
     }

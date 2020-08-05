@@ -30,7 +30,7 @@ namespace CopaVale.Models
 
         [Required]
         [MinLength(5)]
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Password { get; set; }
 
         public string FaceitURL { get; set; }
