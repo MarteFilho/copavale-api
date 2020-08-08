@@ -85,7 +85,9 @@ namespace CopaVale.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("FaceitURL")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Function")
                         .HasColumnType("text");
@@ -107,8 +109,8 @@ namespace CopaVale.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("varchar(11)")
+                        .HasMaxLength(11);
 
                     b.Property<string>("Role")
                         .HasColumnType("text");
@@ -120,6 +122,15 @@ namespace CopaVale.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("FaceitURL")
+                        .IsUnique();
+
+                    b.HasIndex("Nickname")
+                        .IsUnique();
 
                     b.HasIndex("TeamId");
 

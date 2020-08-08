@@ -2,6 +2,7 @@
 using CopaVale.Models;
 using CopaVale.Service;
 using CopaVale.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,8 +22,10 @@ namespace CopaVale.Controllers
             _context = context;
         }
 
+
         [HttpGet]
         [Route("v1/user")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<List<User>>> Get()
         {
            

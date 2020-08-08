@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,8 +25,8 @@ namespace CopaVale.Models
         public string Email { get; set; }
 
         [Required]
-        [MinLength(5)]
-        [MaxLength(50)]
+        [MinLength(11)]
+        [MaxLength(11)]
         public string Phone { get; set; }
 
         [Required]
@@ -33,6 +34,9 @@ namespace CopaVale.Models
         [MaxLength(100)]
         public string Password { get; set; }
 
+        [Required]
+        [MinLength(5)]
+        [MaxLength(50)]
         public string FaceitURL { get; set; }
 
         public string Role { get; set; }
@@ -41,6 +45,5 @@ namespace CopaVale.Models
 
         public List<Ticket> Ticket { get; set; }
         public string TeamName { get; set; }
-
     }
 }
